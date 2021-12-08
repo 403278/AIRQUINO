@@ -1,4 +1,4 @@
-# Folder Disciption
+# Folder Discription
 # Datasets
 Datasets contains the air quality values that was collected from the Range_Extender ESP's connected to the Nordic Thingy:52's to the Raspberry Pi Gateway.
 # JavaScript

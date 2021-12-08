@@ -29,9 +29,11 @@ Display the Data collected with a user friendly Dashboard locally on the RPi 4 �
 # Additional Information
 The purpose of the RPi 4 is to collect and store the data per zone to .csv file for displaying afterwards in a user friendly dashboard. As a client it will connect to a Range_Extender ESP and as a server it will host a Python / JavaScript dashboard with real-time data. As we are not so familiar with JavaScript, we decided to try 3 different tools to finally pick the ones that are representing the data more user friendly. 
 
-In order to run the scripts for this project, the folder gatt_client_server_multi_conn contains the working code, you will have to access “../main/gattc_gatts_coex.c”. 
-To change the name of the server you can edit line 58 : #define GATTS_ADV_NAME "Zone1". 
-To change the name of the devices we want to connect to as a client, we can change line 78: static const char remote_device_name[2][20] = {"Zone1.1","Zone1.2"}. It is also possible to add more than two Thingy:52, but because of time constraints we wanted to start collecting data as fast as possible.
+In order to run the scripts for this project, you need to clone this repo to your Raspberry Pi and you will find the scripts at this `AIRQUINO/BLE - Implementation/RaspberryPi/Data_Collector` path of the repo. 
+To read the air quality values for the zones of TQ5 you need to run the script  `read_Zone1_BLE_server.py` and `read_Zone2_BLE_server.py`. 
+To read the air quality values for the zones of R10 you need to run the script  `read_Zone1_BLE_server2.py` and `read_Zone2_BLE_server2.py`. 
+To start scheduled crontab script configuration you need install crontab package to RPi and configure crontab by typing in cmd: `sudo crontab -e` and you can configure it like these example entries: `30 */2 * * * bash write_###_Zones_to_csv.sh -> 30 minutes past the hour every 2 hours`
+`15,45 23 * * * bash write_###_Zones_to_csv.sh -> 11:15PM and 11:45PM every day`
 
 # References
 -	Bullseye OS - https://www.raspberrypi.com/news/raspberry-pi-os-debian-bullseye/

@@ -4,4 +4,4 @@ Datasets contains the air quality values that was collected from the Range_Exten
 # JavaScript
 Here the graphing of the air quality values will happen by using JavaScript with D3js, we have decided to display the values by using Heat Map and Stacked Area Chart .
 # Python
-Here we can also visualise the air quality values by using Python with Pandas, the link to the repo: 
+Here we can also visualise the air quality values by using Python with Pandas, the link to the repo: https://github.com/m1a2x32/AIRQUINO/tree/main/Data%20-%20Visualization/Python

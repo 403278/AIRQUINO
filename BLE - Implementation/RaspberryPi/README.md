@@ -1,40 +1,41 @@
 # AIRQUINO
 
 # Introduction
-The following documentation will serve as the steps taken by the group members to complete the following project. The environment used to program the ESP32 is ESP-IDF on Visual Studio. The reason for us using ESP-IDF rather than Arduino IDE was because we ran into some problems when connecting to the Nordic Thingy:52. Not only did we consider the problems, but also found more documentation on the handling BLE GATT client / servers. It is recommended for the ESP to hold the BLE connections to 3, even though it can reach 9.
-Steps
+The following documentation will serve as the steps taken by the group members to complete the following project. The operating system flashed on the Raspberry Pi 4 is Bullseye OS. The reason for us using Bullseye OS rather than any older Raspian OS was because there was to many problems with compatibility when installing required packages for using the onboard bluetooth device. While the Bullseye OS is still a newly released, we decided to use it because of the new features that comes with it like the Updater plugin, File manager, Notifications and much more.
 
-# GATT Client
-As we are not so familiar with the ESP-IDF framework, this project had to be divided into certain steps to complete it. The steps go as follows:
-1.	Connect to Nordic Thingy:52 with the ESP
-  - Find Service of GATT Server
-  - Find Characteristic of GATT Server
-  - Subscribe to a notify characteristic (air quality)
-This was a little challenging because it required a 128-bit char UUID, whilst the example codes provided only an 8-bit UUID. Note: Read through walkthrough on GitHub of espressif examples. Solution is there
-2.	Connect to multiple Nordic Thingy:52’s
-  -Get average of all air quality characteristics
+# Gateway Client
+As for this part of the project has to do more with Linux OS & scripts we had to divide the task in steps as follows:
+1.	Connect to Range_Extender ESP's per Zone Scripts
+  - Find Service of ESP GATT Server
+  - Find Characteristic of ESP GATT Server
+  - Read characteristic (air quality)
+  - According to the Thingy:52 data sheet the data is advertised as 4 bytes. First 2 bytes as CO2 and Last 2 bytes as VOC.
+  - Get current time of RPi 4 and en store characteristic (air quality) per Nordic Thingy:52 per Zone in a list with this format; (DATE,TIME,ZONE,DEVICE,PPM,VOC)
+  - Append list to a .csv file every time the script runs.
+This was mainly done by using Python Programming Language and installing some pip requirements for performing the scripts successfully. Note: Check GitHub / GitLab repo always for requirements.txt file and install them before running the scripts.
+2.	Automate Append Range_Extender ESP's Data per Zone to csv Script 
+  - Append using Bash script for running 2 Python scripts with one waiting for 20 seconds after the initial running Bash script
+  - Make Bash script run every minute when RPi 4 is scanning for devices are deployed and in BLE range to append collected data to csv
+  - Log if Bash script has runned successfully or not for debugging if devices were in range or not 
   
-Having read the walkthrough of a single connection, setting up multiple connections was easier. First the git hub example was used as a boiler plate, rather than creating a project from scratch. Like the first step, the second step consisted of creating a profile for each Server and changing their UUID for both service and characteristics. The walkthrough provides a flow chart of how the 2nd step works:
-
-# GATT Server / Client
-Share the value found with another device (Raspberry Pi) – Multiple ways to target this approach
-  - ESP32 can coexist as Client / Server
-  - Raspberry Pi can act as another Server with a Write type Characteristic
-3.	Client / Server advertising data collected from one thingy
-  - According to the thingy:52 data sheet the data is advertised as 4 bytes. First 2 bytes as CO2 and Last 2 bytes as VOC. 
-  - ESP is little endian, research before trying to understand data being advertised!
+# Data Dashboard Server
+Display the Data collected with a user friendly Dashboard locally on the RPi 4 – Multiple ways to target this approach
+3.	Visualizing collected Data from the Range_Extender ESP's
+  - Install required packages for running the server for the Dashboard
+  - Using Python with Pandas
+  - Using JavaScript with D3js 
+  - Using ElasticSearch with Kibana 
 
 # Additional Information
-The purpose of the ESP is to extend the range from the Thingy to the gateway. As a client it will connect to a thingy52 and as a server it will advertise the thingy’s environmental service. To distinguish the location of the thingy the UUID will be changed. 
+The purpose of the RPi 4 is to collect and store the data per zone to .csv file for displaying afterwards in a user friendly dashboard. As a client it will connect to a Range_Extender ESP and as a server it will host a Python / JavaScript dashboard with real-time data. As we are not so familiar with JavaScript, we decided to try 3 different tools to finally pick the ones that are representing the data more user friendly. 
 
-EX: 0001 is a thingy in ZoneX.1 and  0020 is a thingy in ZoneX.2
-
-In order to configure a new Zone, the folder gatt_client_server_multi_conn contains the working code, you will have to access “../main/gattc_gatts_coex.c”. 
+In order to run the scripts for this project, the folder gatt_client_server_multi_conn contains the working code, you will have to access “../main/gattc_gatts_coex.c”. 
 To change the name of the server you can edit line 58 : #define GATTS_ADV_NAME "Zone1". 
 To change the name of the devices we want to connect to as a client, we can change line 78: static const char remote_device_name[2][20] = {"Zone1.1","Zone1.2"}. It is also possible to add more than two Thingy:52, but because of time constraints we wanted to start collecting data as fast as possible.
 
 # References
--	Single Server - https://github.com/espressif/esp-idf/blob/master/examples/bluetooth/bluedroid/ble/gatt_client/tutorial/Gatt_Client_Example_Walkthrough.md 
--	Multiple servers - https://github.com/espressif/esp-idf/tree/master/examples/bluetooth/bluedroid/ble/gattc_multi_connect 
--	Client / Server - https://github.com/espressif/esp-idf/tree/master/examples/bluetooth/bluedroid/coex/gattc_gatts_coex 
--	Section 34. ESP BLE connection limit - https://docs.espressif.com/projects/espressif-esp-faq/en/latest/software-framework/ble-bt.html 
+-	Bullseye OS - https://www.raspberrypi.com/news/raspberry-pi-os-debian-bullseye/
+-	Schedule Scripts - https://towardsdatascience.com/how-to-schedule-python-scripts-with-cron-the-only-guide-youll-ever-need-deea2df63b4e
+-	Bash wait - https://linuxize.com/post/bash-wait/
+-	Crontab Syntax - https://crontab.guru/
+-	BLE on Linux - https://github.com/IanHarvey/bluepy

@@ -1,14 +1,12 @@
-| Supported Targets | ESP32 | ESP32-C3 |
+| Supported Targets | RPi 4 | RPi 3b+ |
 | ----------------- | ----- | -------- |
 
-ESP-IDF Gattc and Gatts Coexistence example
+Raspberry Pi 4 Data Collector scripts
 ==============================================
 
-This example demonstrates the coexistence of gattc and gatts.
+These are the scripts that we have created for collecting and storing air quality values.
 
-This example creates a GATT service and starts ADV. The ADV name is `ESP_GATTS_DEMO`, then waits to be connected. At the same time, a gatt client is created, the ADV name is `ESP_GATTS_DEMO`, the device is connected, and the data is exchanged. If the device is not found within 120 seconds, the example will stop scanning.
-
-ESP-IDF also allows users to create a GATT service via an attribute table, rather than add attributes one by one. And it is recommended for users to use. For more information about this method, please refer to [gatt_server_service_table_demo](../../ble/gatt_server_service_table).
+The Python scripts that starts with `read_Zone` are the ones that connects to the Range_Extender ESP's that are advertising the air quality values of the sensors. And the Bash scripts starting with `write_` are the ones that runs the Python scripts according the location of the zones. Every Python scripts according the location of the zones appends the air quality values to a .csv file.
 
 To test this example, you can run the [gatt_client_demo](../../ble/gatt_client), which can scan for and connect to this example automatically, and run [gatt_server_demo](../../ble/gatt_server), Waiting to be connected. They will start exchanging data once the GATT client has enabled the notification function of the GATT server.
 

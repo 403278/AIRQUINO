@@ -10,7 +10,7 @@ As for this part of the project has to do more with Linux OS & scripts we had to
   - Find Characteristic of ESP GATT Server
   - Read characteristic (air quality)
   - According to the Thingy:52 data sheet the data is advertised as 4 bytes. First 2 bytes as CO2 and Last 2 bytes as VOC.
-  - Get current time of RPi 4 and en store characteristic (air quality) per Nordic Thingy:52 per Zone in a list with this format; (DATE,TIME,ZONE,DEVICE,PPM,VOC)
+  - Get current time of RPi 4 and en store characteristic (air quality) per Nordic Thingy:52 per Zone in a list with this format; `(DATE,TIME,ZONE,DEVICE,PPM,VOC)`
   - Append list to a .csv file every time the script runs.
 This was mainly done by using Python Programming Language and installing some pip requirements for performing the scripts successfully. Note: Check GitHub / GitLab repo always for requirements.txt file and install them before running the scripts.
 2.	Automate Append Range_Extender ESP's Data per Zone to csv Script 

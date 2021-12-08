@@ -4,7 +4,7 @@ from csv import writer
 import csv
 from datetime import datetime
 
-MAC = "30:AE:A4:8F:1D:02"
+MAC = "7C:9E:BD:45:12:9A"
 T1_SERVICE_UUID = "00000010-0000-1000-8000-00805f9b34fb"
 T1_CHARACTERISTIC_UUID = "00000001-0000-1000-8000-00805f9b34fb"
 T2_SERVICE_UUID = "00000020-0000-1000-8000-00805f9b34fb"
@@ -36,20 +36,12 @@ current_time = datetime.now()
 date = current_time.strftime("%m/%d/%Y")
 time = current_time.strftime("%H:%M")
 
-list_T1_data = [date,time,'Zone1','T1',T1_ppm,T1_voc]
-list_T2_data = [date,time,'Zone1','T2',T2_ppm,T2_voc]
+list_Tstacked_data = [time,T1_ppm,T1_voc,T2_ppm,T2_voc]
 
-with open('TQ5.csv', 'a', newline='', encoding='utf-8') as T1:
-    writer_object = writer(T1)
-    writer_object.writerow(list_T1_data)
-
-    # Close the file object
-    T1.close()
-
-
-with open('TQ5.csv', 'a', newline='', encoding='utf-8') as T2:
-    writer_object = writer(T2)
-    writer_object.writerow(list_T2_data)
+with open('TQ5-stacked.csv', 'a', newline='', encoding='utf-8') as Tstacked:
+    writer_object = writer(Tstacked)
+    writer_object.writerow(list_Tstacked_data)
 
     # Close the file object
-    T2.close()
+    Tstacked.close()
+

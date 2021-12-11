@@ -4,14 +4,14 @@ from csv import writer
 import csv
 from datetime import datetime
 
-MAC = "7C:9E:BD:45:12:9A"
+MAC = "7C:9E:BD:45:12:9A" #ESP Zone2
 T1_SERVICE_UUID = "00000010-0000-1000-8000-00805f9b34fb"
 T1_CHARACTERISTIC_UUID = "00000001-0000-1000-8000-00805f9b34fb"
 T2_SERVICE_UUID = "00000020-0000-1000-8000-00805f9b34fb"
 T2_CHARACTERISTIC_UUID = "00000002-0000-1000-8000-00805f9b34fb"
 
 #print("Connect to:" + MAC)
-dev = btle.Peripheral(MAC)
+dev = btle.Peripheral(MAC, addrType=btle.ADDR_TYPE_PUBLIC)
 
 #----------------------------------------------
 characteristics = dev.getCharacteristics()

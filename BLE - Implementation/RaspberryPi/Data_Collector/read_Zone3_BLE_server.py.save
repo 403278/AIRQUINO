@@ -17,7 +17,7 @@ dev = btle.Peripheral(MAC, addrType=btle.ADDR_TYPE_PUBLIC)
 
 characteristics = dev.getCharacteristics()
 
-print('h')
+print(characteristics.uuid[])
 """
 for char in characteristics:
     if(char.uuid == T1_CHARACTERISTIC_UUID ):

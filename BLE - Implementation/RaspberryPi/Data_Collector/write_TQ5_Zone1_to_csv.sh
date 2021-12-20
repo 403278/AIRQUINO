@@ -1,2 +1,2 @@
 #!/bin/bash
-cd /home/pi/AIRQINO && python3 read_Zone1_BLE_server.py
+cd "/home/pi/AIRQUINO/BLE - Implementation/RaspberryPi/Data_Collector" && python read_Zone1_TQ5_server.py

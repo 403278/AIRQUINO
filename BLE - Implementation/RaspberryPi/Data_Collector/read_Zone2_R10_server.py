@@ -63,7 +63,7 @@ src = r'/home/pi/AIRQUINO/BLE - Implementation/RaspberryPi/Data_Collector/R10.cs
 dst = r'/home/pi/DA/R10.csv'
 shutil.copyfile(src, dst)
 
-logging.basicConfig(filename='R10_Zone2.log', filemode='a',format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', encoding='utf-8', level=logging.INFO)
+logging.basicConfig(filename='R10_Zones.log', filemode='a',format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', encoding='utf-8', level=logging.INFO)
 #logging.debug('This message should go to the log file')
 logging.info('Reading & Storing R10 T1 T2 Zone2 Air Quality to csv successfully!')
 #logging.warning('And this, too')

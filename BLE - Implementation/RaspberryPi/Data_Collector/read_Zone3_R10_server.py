@@ -7,7 +7,7 @@ import logging
 import os
 from datetime import datetime
 
-MAC = "80:7D:3A:FD:E4:A6" #ESP Zone3
+MAC = "80:7D:3A:FD:E4:A6" #ESP Zone1B
 T1_SERVICE_UUID = "00000010-0000-1000-8000-00805f9b34fb"
 T1_CHARACTERISTIC_UUID = "00000001-0000-1000-8000-00805f9b34fb"
 T2_SERVICE_UUID = "00000020-0000-1000-8000-00805f9b34fb"
@@ -39,8 +39,8 @@ current_time = datetime.now()
 date = current_time.strftime("%m/%d/%Y")
 time = current_time.strftime("%H:%M")
 
-list_T1_data = [date,time,'Zone3','T1',T1_ppm,T1_voc]
-list_T2_data = [date,time,'Zone3','T2',T2_ppm,T2_voc]
+list_T1_data = [date,time,'Zone1','T3',T1_ppm,T1_voc]
+list_T2_data = [date,time,'Zone1','T4',T2_ppm,T2_voc]
 
 with open('R10.csv', 'a', newline='', encoding='utf-8') as T1:
     writer_object = writer(T1)
@@ -62,8 +62,8 @@ src = r'/home/pi/AIRQUINO/BLE - Implementation/RaspberryPi/Data_Collector/R10.cs
 dst = r'/home/pi/DA/R10.csv'
 shutil.copyfile(src, dst)
 
-logging.basicConfig(filename='R10_Zone3.log', filemode='w',format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', encoding='utf-8', level=logging.INFO)
+logging.basicConfig(filename='R10_Zone1.log', filemode='a',format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', encoding='utf-8', level=logging.INFO)
 #logging.debug('This message should go to the log file')
-logging.info('Reading & Storing R10 Zone3 Air Quality to csv successfully!')
+logging.info('Reading & Storing T3 T4 R10 Zone1 Air Quality to csv successfully!')
 #logging.warning('And this, too')
 #logging.error('And non-ASCII stuff, too, like Øresund and Malmö')

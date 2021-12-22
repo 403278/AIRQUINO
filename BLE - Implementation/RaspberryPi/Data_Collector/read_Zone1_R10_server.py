@@ -7,7 +7,7 @@ import logging
 import os
 from datetime import datetime
 
-MAC = "30:AE:A4:8F:1D:02" #ESP Zone1
+MAC = "30:AE:A4:8F:1D:02" #ESP Zone1A
 T1_SERVICE_UUID = "00000010-0000-1000-8000-00805f9b34fb"
 T1_CHARACTERISTIC_UUID = "00000001-0000-1000-8000-00805f9b34fb"
 T2_SERVICE_UUID = "00000020-0000-1000-8000-00805f9b34fb"
@@ -64,6 +64,6 @@ shutil.copyfile(src, dst)
 
 logging.basicConfig(filename='R10_Zone1.log', filemode='a',format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', encoding='utf-8', level=logging.INFO)
 #logging.debug('This message should go to the log file')
-logging.info('Reading & Storing R10 Zone1 Air Quality to csv successfully!')
+logging.info('Reading & Storing T1 T2 R10 Zone1 Air Quality to csv successfully!')
 #logging.warning('And this, too')
 #logging.error('And non-ASCII stuff, too, like Øresund and Malmö')

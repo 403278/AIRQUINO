@@ -22,9 +22,9 @@ This was mainly done by using Python Programming Language and installing some pi
 Display the Data collected with a user friendly Dashboard locally on the RPi 4 – Multiple ways to target this approach
 3.	Visualizing collected Data from the Range_Extender ESP's
   - Install required packages for running the server for the Dashboard
-  - Using Python with Pandas
-  - Using JavaScript with D3js 
-  - Using ElasticSearch with Kibana 
+  - Using Python with Jupiter Lab
+  - Using JavaScript with D3.js 
+  - Using JavaScript with AR.js 
 
 # Additional Information
 The purpose of the RPi 4 is to collect and store the data per zone to .csv file for displaying afterwards in a user friendly dashboard. As a client it will connect to a Range_Extender ESP and as a server it will host a Python / JavaScript dashboard with real-time data. As we are not so familiar with JavaScript, we decided to try 3 different tools to finally pick the ones that are representing the data more user friendly. 
